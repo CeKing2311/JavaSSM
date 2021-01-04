@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.mybatis.generator.api.MyBatisGenerator"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.mybatis.generator.config.xml.ConfigurationParser"/>
+<fullyQualifiedTypeName name="org.mybatis.generator.internal.DefaultShellCallback"/>
+<fullyQualifiedTypeName name="org.mybatis.generator.config.Configuration"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
+<fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+<fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+<fullyQualifiedTypeName name="com.ceking.crud.dao.DepartmentMapper"/>
+<fullyQualifiedTypeName name="com.ceking.crud.bean.Department"/>
+<fullyQualifiedTypeName name="com.ceking.crud.dao.EmployeeMapper"/>
+<fullyQualifiedTypeName name="com.ceking.crud.bean.Employee"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+</qualifiedTypeNameHistroy>

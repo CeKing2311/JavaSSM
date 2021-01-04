@@ -1,0 +1,11 @@
+package com.ceking.crud.test;
+
+/**
+ * 测试dao层
+ * @author cjq
+ *
+ */
+public class MapperTest {
+	
+	
+}

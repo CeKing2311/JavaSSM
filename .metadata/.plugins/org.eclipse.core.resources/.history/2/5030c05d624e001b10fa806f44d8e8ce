@@ -1,0 +1,20 @@
+package com.ceking.crud.test;
+
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * 测试dao层
+ * @author cjq
+ *
+ */
+public class MapperTest {
+	
+	@Test
+	private void testCRUD() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		
+	}
+}
