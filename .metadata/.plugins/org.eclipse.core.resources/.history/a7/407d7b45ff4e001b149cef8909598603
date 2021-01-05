@@ -1,0 +1,22 @@
+package com.ceking.crud.test;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.ceking.crud.bean.Employee;
+import com.ceking.crud.service.EmployeeService;
+
+public class ServiceTest {
+
+	/*@Autowired
+	EmployeeService employeeService;*/
+	
+	@Test
+	public void testService() {
+		EmployeeService employeeService =new EmployeeService();				 
+		List<Employee> all = employeeService.getAll();
+		System.out.println(all.get(0));
+		
+	}
+}

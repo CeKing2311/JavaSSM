@@ -1,0 +1,9 @@
+package com.ceking.crud.test;
+
+public class ServiceTest {
+
+	public void testService() {
+		
+		
+	}
+}

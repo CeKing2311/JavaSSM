@@ -1,0 +1,19 @@
+package com.ceking.crud.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * 处理员工请求
+ * 
+ * @author cjq
+ *
+ */
+public class EmployeeController {
+	
+	@RequestMapping("/emps")
+	public String getEmps() {
+		
+		
+		return "list";
+	}
+}

@@ -1,0 +1,13 @@
+package com.ceking.crud.controller;
+
+/**
+ * 处理员工请求
+ * @author cjq
+ *
+ */
+public class EmployeeController {
+
+		public String getEmps() {
+			return "list";
+		}
+}

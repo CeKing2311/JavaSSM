@@ -1,0 +1,16 @@
+package com.ceking.crud.test;
+
+import java.util.List;
+
+import com.ceking.crud.bean.Employee;
+import com.ceking.crud.service.EmployeeService;
+
+public class ServiceTest {
+
+	public static void main(String[] args) {
+		EmployeeService service =new EmployeeService();
+		System.out.println(service);
+		List<Employee> all = service.getAll();
+		System.out.println(all);		
+	}	
+}

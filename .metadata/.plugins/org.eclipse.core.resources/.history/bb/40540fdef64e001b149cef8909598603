@@ -1,0 +1,32 @@
+package com.ceking.crud.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ceking.crud.bean.Employee;
+import com.ceking.crud.service.EmployeeService;
+
+/**
+ * 处理员工请求
+ * 
+ * @author cjq
+ *
+ */
+public class EmployeeController {
+	
+	@Autowired
+	EmployeeService employeeService;
+	/**
+	 * 分页查询员工数据
+	 * @return
+	 */
+	@RequestMapping("/emps")
+	public String getEmps(@RequestParam(value="pageIndex",defaultValue="1") Integer pageIndex) {
+		
+	 List<Employee> list=employeeService.getAll();
+		return "list";
+	}
+}

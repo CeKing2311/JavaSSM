@@ -1,0 +1,26 @@
+package com.ceking.crud.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ceking.crud.bean.Department;
+import com.ceking.crud.bean.WebResult;
+import com.ceking.crud.service.DepartmentService;
+
+@Controller
+public class DepartmentController {
+
+	@Autowired
+	DepartmentService departmentService;
+	
+	@RequestMapping("/depts")
+	public WebResult getDepts() {
+		List<Department> list = departmentService.getAll();
+		
+		return null;
+	}
+	
+}

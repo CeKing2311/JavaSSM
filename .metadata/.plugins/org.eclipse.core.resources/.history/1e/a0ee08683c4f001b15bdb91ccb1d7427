@@ -1,0 +1,5 @@
+package com.ceking.crud.service;
+
+public class DepartmentService {
+
+}

@@ -1,0 +1,5 @@
+package com.ceking.crud.bean;
+
+public class WebResult {
+
+}

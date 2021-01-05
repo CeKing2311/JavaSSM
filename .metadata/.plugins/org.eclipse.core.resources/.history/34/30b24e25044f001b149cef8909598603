@@ -1,0 +1,23 @@
+package com.ceking.crud.test;
+
+import java.util.List;
+
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.ceking.crud.bean.Employee;
+import com.ceking.crud.service.EmployeeService;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+public class ServiceTest {
+
+	
+	public static void main(String[] args) {
+		EmployeeService service =new EmployeeService();
+		System.out.println(service);
+		List<Employee> all = service.getAll();
+		System.out.println(all);		
+	}	
+}

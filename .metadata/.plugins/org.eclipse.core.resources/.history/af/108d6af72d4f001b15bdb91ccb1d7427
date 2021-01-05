@@ -1,0 +1,10 @@
+package com.ceking.crud.bean;
+
+/**
+ * 通用的返回的类
+ * @author cjq
+ *
+ */
+public class WebResult {
+
+}

@@ -1,0 +1,12 @@
+package com.ceking.crud.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ceking.crud.dao.EmployeeMapper;
+
+public class EmployeeService {
+	
+	@Autowired
+	EmployeeMapper employeeMapper;
+	
+}
