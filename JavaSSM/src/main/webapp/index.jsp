@@ -35,7 +35,7 @@
 		<div clalss="row">
 			<div class="col-md-4 col-md-offset-8">
 				<button class="btn btn-primary" id="emp_add">新增</button>
-				<button class="btn btn-danger">删除</button>
+				<button class="btn btn-danger" id="delete_batch">删除</button>
 			</div>
 		</div>
 		<!-- 表格 -->
@@ -43,6 +43,9 @@
 			<div class="col-md-12">
 				<table class="table table-bordered table-hover">
 					<tr>
+						<th>
+							<input type="checkbox" id="chkAll">
+						</th>
 						<th>#</th>
 						<th>empName</th>
 						<th>gender</th>
@@ -65,159 +68,435 @@
 				</nav>
 			</div>
 		</div>
-			<!-- 员工添加 -->
-<div class="modal fade" id="addEmp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">新增员工</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" id="formInfo">
-         <div class="form-group">
-			    <label for="empname" class="col-sm-2 control-label">EmpName</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="empname" name="empname" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="email" class="col-sm-2 control-label">Email</label>
-			    <div class="col-sm-10">
-			      <input type="email" class="form-control" id="email" name="email" placeholder="Email@qq.com">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label  class="col-sm-2 control-label">Gender</label>
-			    <div class="col-sm-10">
-			      		<label class="radio-inline">
-						  <input type="radio" name="gender" id="radM" value="M" checked="checked"> 男
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="gender" id="radF" value="F"> 女
-						</label>
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label  class="col-sm-2 control-label">DeptName</label>
-			    <div class="col-sm-4">
-			      	<select class="form-control" name="dId" id="sltDept">
-			      		
-			      	</select>			      		
-			    </div>
-			  </div>
-			</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" id="saveInfo">保存</button>
-      </div>
-    </div>
-  </div>
-</div>
+		<!-- 员工添加 -->
+		<div class="modal fade" id="addEmp" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">新增员工</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" id="formInfo">
+							<div class="form-group">
+								<label for="empname" class="col-sm-2 control-label">EmpName</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="empName"
+										name="empName"> <span id="emp_name_block"
+										class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-sm-2 control-label">Email</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="email"
+										name="email" placeholder="Email@qq.com"> <span
+										id="email_block" class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Gender</label>
+								<div class="col-sm-10">
+									<label class="radio-inline"> <input type="radio"
+										name="gender" id="radM" value="M" checked="checked"> 男
+									</label> <label class="radio-inline"> <input type="radio"
+										name="gender" id="radF" value="F"> 女
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">DeptName</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="dId" id="sltDept">
+
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" id="saveInfo">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 员工修改 -->
+		<div class="modal fade" id="editEmp" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">编辑员工</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" id="formInfoEdit">
+							<div class="form-group">
+								<label for="empname" class="col-sm-2 control-label">EmpName</label>
+								<div class="col-sm-10">
+									<p class="form-control-static" id="edit_emp_name"></p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-sm-2 control-label">Email</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="edit_email"
+										name="email" placeholder="Email@qq.com"> <span
+										id="edit_email_block" class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Gender</label>
+								<div class="col-sm-10">
+									<label class="radio-inline"> <input type="radio"
+										name="gender" id="radMEdit" value="M" checked="checked">
+										男
+									</label> <label class="radio-inline"> <input type="radio"
+										name="gender" id="radFEdit" value="F"> 女
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">DeptName</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="dId">
+									</select>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" id="saveInfoEdit">修改</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script type="text/javascript">
-	$(function(){
-		getEmps(1);		
-		$("#emp_add").click(function(){
-			getDepts();
-			$('#addEmp').modal({
-				backdrop:'static'				
+		var totalCount,currentPage;
+		$(function() {
+			getEmps(1);
+			$("#emp_add").click(function() {
+				//$("#formInfo")[0].reset();
+				reset_form("#formInfo");
+				getDepts("#formInfo select");
+				$('#addEmp').modal({
+					backdrop : 'static'
+				})
+			});
+			//保存员工
+			$("#saveInfo").click(function() {
+				var info = $("#formInfo").serialize();
+				if (!validateForm()) {
+					return false;
+				}
+				var val = $(this).attr("validate");
+				if (val == "success") {
+					$.ajax({
+						url : "${APP_PATH}/emp",
+						type : "post",
+						data : info,
+						success : function(result) {
+							if (result.code == 200) {
+								$("#addEmp").modal('hide');
+								//显示最后一页
+								getEmps(totalCount);
+							} else {
+								console.log(result);
+							}
+						}
+					})
+				}
+			});
+			$("#saveInfoEdit").click(function(){
+				var email = $("#edit_email").val();
+				var empId= $(this).attr("empId");
+				var regEmail = /^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+				if (!regEmail.test(email)) {
+					$("#edit_email").parent().addClass('has-error');
+					$("#edit_email_block").html("邮箱格式不正确!");
+					//alert("邮箱格式不正确!");
+					return false;
+				} else {
+					$("#edit_email").parent().addClass("has-success").removeClass(
+							"has-error");
+					$("#edit_email_block").html("");
+				}
+				//保存更新的数据
+				var putData= $("#formInfoEdit").serialize()+"&_method=PUT";
+				$.ajax({
+					url:"${APP_PATH}/emp/"+empId,
+					type:"put",
+					data:$("#formInfoEdit").serialize(),
+					success:function(result){
+						if (result.code == 200) {
+							$("#editEmp").modal('hide');
+							//返回当前页
+							getEmps(currentPage);
+						} else {
+							console.log(result);
+						}
+					}					
+				})
+				
+				
+			});
+			//校验用户名是否可用
+			$("#empName").change(
+					function() {
+						$.ajax({
+							url : "${APP_PATH}/chkempname",
+							type : "post",
+							data : "empName=" + $(this).val(),
+							success : function(result) {
+								if (result.code == 200) {
+									//成功
+									$("#empName").parent().addClass(
+											"has-success").removeClass(
+											"has-error");
+									$("#emp_name_block").html("用户名可用");
+									$("#saveInfo").attr("validate", "success");
+								} else {
+									//失败		
+
+									$("#empName").parent()
+											.addClass("has-error").removeClass(
+													"has-success");
+									$("#emp_name_block").html(result.data.msg);
+									$("#saveInfo").attr("validate", "error");
+								}
+							}
+						})
+					});			
+		});
+		//编辑按钮点击
+		$(document).on("click",".edit_btn",function(){
+			getDepts("#formInfoEdit select");
+			var empId= $(this).attr("data-id");			
+			get_emp_info(empId);
+			$('#editEmp').modal({
+				backdrop : 'static'
 			})			
 		});
-		$("#saveInfo").click(function(){
-		  var info=	$("#formInfo").serialize();
-		  console.log(info);
-		  $.ajax({
-				url:"${APP_PATH}/emp/1",
-				type:"post",
-				success:function(result){									 
-				 
+		//单个删除员工
+		$(document).on("click",".del_btn",function(){			
+			var empId= $(this).attr("data-id");			
+			var empName =$(this).parents("tr").find("td:eq(2)").text();
+			if(confirm("确认要删除员工["+empName+"]吗？")){
+				$.ajax({
+					url:"${APP_PATH}/emp/"+empId,
+					type:"DELETE",
+					success:function(result){
+						if (result.code == 200) {
+							//返回当前页
+							getEmps(currentPage);
+						} else {
+							console.log(result);
+						}
+					}					
+				});				
+			}
+		});
+		
+		
+		function get_emp_info(empId){			
+			$.ajax({
+				url:"${APP_PATH}/emp/"+empId,
+				type:"get",
+				success:function(result){
+					if(result.code==200){
+						var empInfo= result.data.emp; 
+						$("#edit_emp_name").text(empInfo.empName);
+						$("#edit_email").val(empInfo.email);
+						$("#formInfoEdit select").val(empInfo.dId);
+						$("#formInfoEdit input[name=gender]").val([empInfo.gender]);
+						$("#saveInfoEdit").attr("empId",empInfo.empId);
+					}
+				}				
+			})
+		}
+		
+		function reset_form(ele) {
+			$(ele)[0].reset();
+			$(ele).find("*").removeClass("has-error has-success");
+			$(ele).find(".help-block").html("");
+		}
+		function validateForm() {
+			var emp_name = $("#empName").val();
+			var regName = /(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5}$)/;
+			if (!regName.test(emp_name)) {
+				//alert("用户名可以是2-5位中文或者6-16位英文和数字的组合!");
+				$("#empName").parent().addClass("has-error");
+				$("#emp_name_block").html("用户名可用是2-5位中文或者6-16位英文和数字的组合!");
+				return false;
+			} else {
+				$("#empName").parent().addClass("has-success").removeClass(
+						"has-error");
+				$("#emp_name_block").html("");
+			}
+			var email = $("#email").val();
+			var regEmail = /^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+			if (!regEmail.test(email)) {
+				$("#email").parent().addClass('has-error');
+				$("#email_block").html("邮箱格式不正确!");
+				//alert("邮箱格式不正确!");
+				return false;
+			} else {
+				$("#email").parent().addClass("has-success").removeClass(
+						"has-error");
+				$("#email_block").html("");
+			}
+			return true;
+		}
+		
+		function getDepts(ele) {
+			$.ajax({
+				url : "${APP_PATH}/depts",
+				type : "get",
+				success : function(result) {
+					initDept(result.data.dept,ele);
 				}
-			})  
-		});
-	});	
-	function getDepts(){
-		$.ajax({
-			url:"${APP_PATH}/depts",
-			type:"get",
-			success:function(result){					
-			  console.log(result);	
-			  initDept(result.data.dept);
-			}
-		})
-	}
-	function initDept(deptList){
-		$("#sltDept").empty();
-		//$("<option value=''>===请选择部门===</option>").appendTo("#sltDept");
-		$.each(deptList,function(index,item){
-		 	$("<option></option>").attr("value",item.deptId).append(item.deptName).appendTo("#sltDept");		  
-		});
-	}
-	
-	function getEmps(pageIndex){
-		$.ajax({
-			url:"${APP_PATH}/emps",
-			data:"pageIndex="+pageIndex,
-			type:"get",
-			success:function(result){					
-			  //1.解析并显示员工数据
-			  set_emps_table(result);			  
-			  //2.解析分页信息
-			  set_page_info(result.data.pageInfo);
-			  set_page_nav(result.data.pageInfo);				  
-			}
-		})
-	}
-	function set_emps_table(result) {
-		$("#tbody").empty();
-		var emps= result.data.pageInfo.list;
-		$.each(emps,function(index,item){
-			var empIdTd= $("<td></td>").append(item.empId);
-			var empNameTd= $("<td></td>").append(item.empName);
-			var gender= item.gender=="M"?"男":"女";
-			var genderTd= $("<td></td>").append(gender);
-			var emailTd= $("<td></td>").append(item.email);
-			var empDepartTd= $("<td></td>").append(item.dept.deptName);
-			
-			var _editBtn='<button class="btn btn-primary btn-sm">修改</button>';
-		    var _deleteBtn='<button class="btn btn-danger btn-sm">删除</button>';				
-			var handleTd=$("<td></td>").append(_editBtn).append(_deleteBtn);
-		    $("<tr></tr>")
-		    .append(empIdTd)
-		    .append(empNameTd)
-		    .append(genderTd)
-		    .append(emailTd)
-		    .append(empDepartTd)
-		    .append(handleTd)
-		    .appendTo("#tbody");				
-		});
-	}
-	
-	function set_page_info(pageInfo) {
-		$("#pageInfo").html("当前"+pageInfo.pageNum+"页,总"+pageInfo.pages+"页,总"+pageInfo.total+"条记录")
-	}
-	function set_page_nav(pageInfo) {		
-		var _page_nav="";
-		_page_nav+= '<li onclick="getEmps(1)"><a href="#" >首页</a></li>';
-		if(pageInfo.hasPreviousPage){
-			_page_nav+='<li><a onclick="getEmps('+(pageInfo.pageNum-1)+')" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';
+			})
 		}
-		$.each(pageInfo.navigatepageNums,function(index,item){
-			if(pageInfo.pageNum==item){
-				_page_nav+='<li class="active"><a onclick="getEmps('+item+')" href="#">'+item+'</a></li>';					
-			}else{					
-				_page_nav+='<li><a onclick="getEmps('+item+')" href="#">'+item+'</a></li>';
-			}
-		})
-		if(pageInfo.hasNextPage){
-			_page_nav+='<li><a onclick="getEmps('+(pageInfo.pageNum+1)+')" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>';
+		function initDept(deptList,ele) {
+			$(ele).empty();
+			$.each(deptList, function(index, item) {
+				$("<option></option>").attr("value", item.deptId).append(
+						item.deptName).appendTo(ele);
+			});
 		}
-	    _page_nav+='<li><a onclick="getEmps('+pageInfo.pages+')" href="#">末页</a></li>';
-	    
-	    $("#pagination").html(_page_nav);
-	}
-</script>
+
+		function getEmps(pageIndex) {
+			$.ajax({
+				url : "${APP_PATH}/emps",
+				data : "pageIndex=" + pageIndex,
+				type : "get",
+				success : function(result) {
+					//1.解析并显示员工数据
+					set_emps_table(result);
+					//2.解析分页信息
+					set_page_info(result.data.pageInfo);
+					set_page_nav(result.data.pageInfo);
+				}
+			})
+		}
+		function set_emps_table(result) {
+			$("#tbody").empty();
+			var emps = result.data.pageInfo.list;
+			$
+					.each(
+							emps,
+							function(index, item) {
+								var chkTd=$('<td><input type="checkbox" class="chk_item" value="'+item.empId+'" ></td>'); 
+								var empIdTd = $("<td></td>").append(item.empId);
+								var empNameTd = $("<td></td>").append(
+										item.empName);
+								var gender = item.gender == "M" ? "男" : "女";
+								var genderTd = $("<td></td>").append(gender);
+								var emailTd = $("<td></td>").append(item.email);
+								var empDepartTd = $("<td></td>").append(
+										item.dept.deptName);
+
+								var _editBtn = '<button class="btn btn-primary btn-sm edit_btn" data-id="'+item.empId+'" >修改</button>';
+								var _deleteBtn = '<button class="btn btn-danger btn-sm del_btn" data-id="'+item.empId+'">删除</button>';
+								var handleTd = $("<td></td>").append(_editBtn)
+										.append(_deleteBtn);
+								$("<tr></tr>").append(chkTd)
+										.append(empIdTd)
+										.append(empNameTd).append(genderTd)
+										.append(emailTd).append(empDepartTd)
+										.append(handleTd).appendTo("#tbody");
+							});
+		}
+		
+		function set_page_info(pageInfo) {
+			$("#pageInfo").html(
+					"当前" + pageInfo.pageNum + "页,总" + pageInfo.pages + "页,总"
+							+ pageInfo.total + "条记录");
+			totalCount = pageInfo.total;
+			currentPage= pageInfo.pageNum;
+		}
+		function set_page_nav(pageInfo) {
+			var _page_nav = "";
+			_page_nav += '<li onclick="getEmps(1)"><a href="#" >首页</a></li>';
+			if (pageInfo.hasPreviousPage) {
+				_page_nav += '<li><a onclick="getEmps('
+						+ (pageInfo.pageNum - 1)
+						+ ')" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';
+			}
+			$.each(pageInfo.navigatepageNums, function(index, item) {
+				if (pageInfo.pageNum == item) {
+					_page_nav += '<li class="active"><a onclick="getEmps('
+							+ item + ')" href="#">' + item + '</a></li>';
+				} else {
+					_page_nav += '<li><a onclick="getEmps(' + item
+							+ ')" href="#">' + item + '</a></li>';
+				}
+			})
+			if (pageInfo.hasNextPage) {
+				_page_nav += '<li><a onclick="getEmps('
+						+ (pageInfo.pageNum + 1)
+						+ ')" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>';
+			}
+			_page_nav += '<li><a onclick="getEmps(' + pageInfo.pages
+					+ ')" href="#">末页</a></li>';
+
+			$("#pagination").html(_page_nav);
+		}
+		//全选		
+		$("#chkAll").click(function(){
+			var chk=	$(this).prop("checked");
+			$(".chk_item").prop("checked",chk);
+		});
+		$(document).on("click",".chk_item",function(){
+		   var chkLength=$(".chk_item:checked").length;
+		   var itemLength=$(".chk_item").length;
+		   if(chkLength==itemLength){
+			   $("#chkAll").prop("checked",true);   
+		   }else{
+			   $("#chkAll").prop("checked",false);
+		   }
+		});
+		$("#delete_batch").click(function(){
+			var empNames="";
+			var del_id="";
+			$.each($(".chk_item:checked"),function(){
+				empNames+=$(this).parents("tr").find("td:eq(2)").text()+",";		
+				del_id+= $(this).val()+"-";
+			})
+			if(empNames==""){
+				alert("请选择要删除的员工！");
+				return;
+			}
+			empNames=empNames.substring(0,empNames.length-1);
+			del_id= del_id.substring(0,del_id.length-1);
+			console.log(del_id);
+			if(confirm("确认删除员工【"+empNames+"】吗")){
+				$.ajax({
+					url:"${APP_PATH}/emp/"+del_id,
+					type:"DELETE",
+					success:function(result){
+						if (result.code == 200) {
+							//返回当前页
+							getEmps(currentPage);
+						} else {
+							console.log(result);
+						}
+					}					
+				})
+				
+			}
+		});
+	</script>
 </body>
 </html>

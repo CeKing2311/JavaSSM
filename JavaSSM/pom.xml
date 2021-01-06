@@ -10,7 +10,7 @@
 		<ceking.spring.version>4.3.7.RELEASE</ceking.spring.version>
 	</properties>
 	<dependencies>
-		
+
 		<!-- 使用mybatis的generator -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
 		<dependency>
@@ -38,6 +38,13 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.11.2</version>
+		</dependency>
+		<!-- JSR303数据校验支持 -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.4.1.Final</version>
 		</dependency>
 		<!-- spring-jdbc -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
